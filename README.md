@@ -1,5 +1,4 @@
 
-````markdown
 # 📧 EmailAssist — A Real-World OpenEnv Environment for AI Agents
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue.svg)

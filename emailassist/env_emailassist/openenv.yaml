@@ -1,0 +1,61 @@
+# --------------------------------------------------------
+# OpenEnv Configuration for EmailAssist (Environment A)
+# --------------------------------------------------------
+
+id: emailassist-env
+name: EmailAssist Environment
+description: |
+  A lightweight environment for classifying email categories,
+  predicting priority, and drafting responses. Designed for
+  practical LLM evaluation with lenient scoring to reduce
+  failure rates during automated testing.
+
+version: 1.0.0
+
+entry_point: env_emailassist.env:EmailAssistEnv
+
+tasks:
+  - id: category_classification
+    description: Classify email into predefined categories.
+    action_schema: |
+      {
+        "type": "object",
+        "properties": {
+          "category": { "type": "string" }
+        },
+        "required": ["category"]
+      }
+
+  - id: priority_classification
+    description: Predict if the email is High / Medium / Low priority.
+    action_schema: |
+      {
+        "type": "object",
+        "properties": {
+          "priority": { "type": "string" }
+        },
+        "required": ["priority"]
+      }
+
+  - id: email_drafting
+    description: Generate a short, clear, polite email draft.
+    action_schema: |
+      {
+        "type": "object",
+        "properties": {
+          "email_text": { "type": "string" }
+        },
+        "required": ["email_text"]
+      }
+
+reward:
+  description: |
+    Lenient reward scheme:
+    - +1.0 for correct classification
+    - +0.5 partial match
+    - -0.2 penalty for completely wrong
+    - Drafting rewards clarity over length
+
+maintainers:
+  - name: Kirti Sharma
+    email: your-email@example.com

@@ -251,7 +251,7 @@ EmailAssist Environment is running!
 
 # 🥇 Author
 
-Solo participant: **YOU**
+Solo participant: **kirtisharma-sudo**
 Built for **Meta x HuggingFace OpenEnv Hackathon 2026**.
 
 ---

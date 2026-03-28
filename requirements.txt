@@ -4,3 +4,6 @@ pydantic
 openai>=1.3.0
 python-multipart
 numpy
+gradio
+fastapi
+pydantic

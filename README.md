@@ -1,4 +1,14 @@
-
+---
+title: EmailAssist
+emoji: ✉️
+colorFrom: green
+colorTo: blue
+sdk: docker
+pinned: false
+app_port: 7860
+license: mit
+short_description: AI-powered email automation and response system.
+---
 # 📧 EmailAssist — A Real-World OpenEnv Environment for AI Agents
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue.svg)

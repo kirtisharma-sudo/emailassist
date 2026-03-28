@@ -1,54 +1,51 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+import gradio as gr
 from env_emailassist.env import EmailAssistEnv
-
-app = FastAPI(title="EmailAssist Environment API")
 
 # Initialize environment
 env = EmailAssistEnv()
 state = env.reset()
 
 
-# -------------------------
-# Request Schema
-# -------------------------
-class Action(BaseModel):
-    category: str | None = None
-    priority: str | None = None
-    email_text: str | None = None
-
-
-# -------------------------
-# API ROUTES
-# -------------------------
-
-@app.get("/")
-def root():
-    return {"message": "EmailAssist Environment is running!"}
-
-
-@app.get("/state")
-def get_state():
-    """Return the current state to the client."""
-    return state
-
-
-@app.post("/run")
-def run_action(action: Action):
-    """
-    Take one step in environment.
-    Accepts any of the 3 possible actions.
-    """
+def run_email_assist(category, priority, email_text):
     global state
 
-    obs, reward, done, info = env.step(action.dict())
-
-    if done:
-        env.reset()
-
-    return {
-        "observation": obs,
-        "reward": reward,
-        "done": done,
-        "info": info
+    action = {
+        "category": category,
+        "priority": priority,
+        "email_text": email_text
     }
+
+    try:
+        obs, reward, done, info = env.step(action)
+
+        if done:
+            env.reset()
+
+        return f"""
+📊 Observation:
+{obs}
+
+💰 Reward: {reward}
+
+✅ Done: {done}
+
+ℹ️ Info: {info}
+"""
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+# 🎨 Gradio UI
+iface = gr.Interface(
+    fn=run_email_assist,
+    inputs=[
+        gr.Textbox(label="Category (optional)"),
+        gr.Textbox(label="Priority (optional)"),
+        gr.Textbox(label="Email Text", lines=5)
+    ],
+    outputs="text",
+    title="📧 EmailAssist AI",
+    description="Interact with your EmailAssist Environment"
+)
+
+iface.launch()

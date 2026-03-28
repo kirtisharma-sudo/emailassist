@@ -1,4 +1,4 @@
----
+
 ````markdown
 # 📧 EmailAssist — A Real-World OpenEnv Environment for AI Agents
 

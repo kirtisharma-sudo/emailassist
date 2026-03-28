@@ -1,13 +1,11 @@
 ---
 title: EmailAssist
 emoji: ✉️
-colorFrom: green
-colorTo: blue
+colorFrom: blue
+colorTo: indigo
 sdk: docker
+app_file: app.py
 pinned: false
-app_port: 7860
-license: mit
-short_description: AI-powered email automation and response system.
 ---
 # 📧 EmailAssist — A Real-World OpenEnv Environment for AI Agents
 
